@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Слущай радио онлайн</title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.1">
+  <style type="text/css">
+    .container {
+      max-width: 860px;
+      width: 100%;
+      position: relative;
+      margin: 100px auto;
+      background: #d0bdff;
+      border-radius: 14px;
+    }
+
+    .container__header {
+      background: #a17bff;
+      padding: 20px;
+      border-top-left-radius: 14px;
+      border-top-right-radius: 14px;
+    }
+
+    .container__header h1 {
+      width: fit-content;
+      margin: auto;
+    }
+
+    .container__content {
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .audio-player {
+      padding: 20px;
+      width: fit-content;
+      margin: auto;
+    }
+
+    .container__radio-item {
+      padding: 20px;
+      background: white;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      width: 80px;
+      height: 80px;
+      justify-content: center;
+      transition: .3s ease;
+    }
+
+    .container__radio-item:hover {
+      background: #f0f0f0;
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const radioItems = document.querySelectorAll('.container__radio-item');
+      const audioPlayer = document.querySelector('.audio-player audio');
+
+      radioItems.forEach(item => (item.addEventListener('click', () => {
+        const audioSource = document.querySelector('.audio-player audio source');
+        const radioLink = item.querySelector('.radio-link').dataset.radioLink;
+        const newSource = audioSource.cloneNode();
+        newSource.setAttribute('src', radioLink);
+
+        audioPlayer.removeChild(audioSource);
+        audioPlayer.appendChild(newSource);
+        audioPlayer.load();
+        setTimeout(() => {
+          audioPlayer.play();
+        }, 1000)
+      })))
+    })
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="container__header">
+      <h1>Списък с радио станции</h1>
+      <div class="container__filter">
+        <div class="container__filter-item">
+          <div class="filter-item-title">
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="audio-player">
+      <audio controls>
+        <source src="https://pulsar.atlantis.bg:8443/melody?file=.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+    <div class="container__content">
+      <!-- Radio items -->
+      <div class="container__radio-item">
+        <img class="radio-item__image" src="">
+        <div class="radio-link" data-radio-link="https://pulsar.atlantis.bg:8443/melody?file=.mp3">
+          Melody
+        </div>
+      </div>
+
+      <div class="container__radio-item">
+        <img class="radio-item__image" src="">
+        <div class="radio-link" data-radio-link="https://play.global.audio/radio1128">
+          Radio 1
+        </div>
+      </div>
+
+      <div class="container__radio-item">
+        <img class="radio-item__image" src="">
+        <div class="radio-link" data-radio-link="https://cdn.bweb.bg/radio/njoy.mp3">
+          N-JOY
+        </div>
+      </div>
+
+      <div class="container__radio-item">
+        <img class="radio-item__image" src="">
+        <div class="radio-link" data-radio-link="https://cdn.bweb.bg/radio/z-rock.mp3">
+          Z-ROCK
+        </div>
+      </div>
+
+      <div class="container__radio-item">
+        <img class="radio-item__image" src="">
+        <div class="radio-link" data-radio-link="https://play.global.audio/bgradio128">
+          BG RADIO
+        </div>
+      </div>
+
+      <div class="container__radio-item">
+        <img class="radio-item__image" src="">
+        <div class="radio-link" data-radio-link="https://play.global.audio/city128">
+          City
+        </div>
+      </div>
+
+      <div class="container__radio-item">
+        <img class="radio-item__image" src="">
+        <div class="radio-link" data-radio-link="http://broadcast.masters.bg:8000/live">
+          Radio Varna
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
